@@ -30,8 +30,8 @@ pipeline {
             steps{
            dir("${WORKSPACE}") {
           sh """
-            ./shopfront/mvn clean install
-            docker build -t ../shopfront/${REPO_NAME}:${IMAGE_TAG} .
+            mvn clean install
+            docker build -t ${REPO_NAME}:${IMAGE_TAG} .
             docker tag ${REPO_NAME}:${IMAGE_TAG} ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${REPO_NAME}:${IMAGE_TAG}
             docker push ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${REPO_NAME}:${IMAGE_TAG}
             """
